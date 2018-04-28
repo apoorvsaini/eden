@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import PatientList from '../PatientList';
+import PatientDetail from '../PatientDetail';
 
 import { mapActionsToPropTypes } from '../../../lib/util';
 import { AppActions } from '../../../actions';
@@ -27,7 +28,7 @@ class Dashboard extends Component {
           <PatientList/>
         </div>
         <div className="Sidebar-two column">
-          
+          <PatientDetail/>
         </div>
       </div>
     );
