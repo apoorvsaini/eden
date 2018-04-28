@@ -1,0 +1,21 @@
+.Dash-area {
+    height: 100%;
+    margin: 0rem !important; 
+}
+
+.Sidebar-one {
+    background: #72c6a5;
+    height: 100%;
+    padding: 1rem !important;
+    color: #FFF;
+    overflow: auto;
+}
+
+.Sidebar-two {
+    background: #ecf1f2;
+    height: 100%;
+}
+
+.Bold-weight {
+    font-weight: 600;
+}

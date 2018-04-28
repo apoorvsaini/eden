@@ -1,0 +1,40 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": false
+  },
+  "extends": ["airbnb", "eslint:recommended", "plugin:react/recommended"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "comma-dangle": ["error", "always-multiline"],
+    "import/extensions": false,
+    "indent": ["error", 2, {"SwitchCase": 1}],
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "to" ],
+      "aspects": [ "noHref", "invalidHref", "preferButton" ]
+    }],
+    "keyword-spacing": "error",
+    "no-console": "warn",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "object-curly-spacing": ["error", "always"],
+    "react/jsx-boolean-value": true,
+    "react/jsx-closing-bracket-location": "tag-aligned",
+    "react/jsx-closing-tag-location": true,
+    "react/jsx-equals-spacing": "never",
+    "react/jsx-filename-extension": false,
+    "react/no-unused-prop-types": true,
+    "react/no-unused-state": true,
+    "react/prefer-stateless-function": false,
+    "react/prop-types": true,
+    "quotes": [ "error", "single" ]
+  },
+  "globals": {
+    "__DEV__": true
+  }
+}

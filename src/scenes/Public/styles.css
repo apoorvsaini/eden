@@ -1,0 +1,55 @@
+body,
+body > div,
+body > div > div,
+body > div > div > div.public-container {
+  height: 100%;
+}
+
+.Public {
+  height: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  /* border: 1px solid #333333; 
+  border-radius: 5px; */
+}
+
+.Public-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Public-header-logo {
+  border-radius: 10px;
+  max-width: 100px;
+}
+
+.Public-navbar {
+  flex: 1;
+  margin: 20px auto;
+  padding: 5px;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.Public-navbar > a {
+  text-decoration: none;
+  margin: 0 20px;
+}
+
+.Public-navbar > a.active {
+  font-weight: bold;
+}
+
+.Form-element {
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.Form-btn {
+  position: relative;
+  top: 20px;
+  margin: 0 auto;
+}
