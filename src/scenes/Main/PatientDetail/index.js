@@ -30,11 +30,19 @@ class PatientDetail extends Component {
     const { app } = this.props;
     const patientSelected = app.get('patientSelected');
     const appointments = app.get('appointments');
+    const fetchingAppointments = app.get('fetchingAppointments');
 
-    if (patientSelected === null) {
+    if (patientSelected === null && !fetchingAppointments) {
         return (
             <div className="Empty-box box">
                PICK A PATIENT
+            </div>
+        );
+    }
+    else if (fetchingAppointments) {
+        return (
+            <div className="Empty-box box">
+               LOADING...
             </div>
         );
     }

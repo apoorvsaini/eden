@@ -32,6 +32,7 @@ class PatientList extends Component {
     const { app } = this.props;
     const isDataLoading = app.get('isDataLoading');
     const patientList = app.get('patientList');
+    const patientSelected = app.get('patientSelected');
 
     if (isDataLoading) {
         return (
@@ -44,7 +45,7 @@ class PatientList extends Component {
         return (
             <div>
               {patientList.map((patient) => 
-              <div onClick={() => this.patientSelected(patient.id)} className="box Box-links" key={patient.id}>
+              <div onClick={() => this.patientSelected(patient.id)} className="box Box-links" key={patient.id} style={{borderLeft: patientSelected === patient.id ?'10px solid #5a5a5a' : '0px'}}>
                 <div className="Bold-weight Patient-name">{patient.name}</div>
                 <div>{patient.company}</div>
               </div>)}
