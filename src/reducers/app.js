@@ -6,6 +6,8 @@ const initialState = Map({
   patientList: [],
   inOverview: false,
   patientSelected: null,
+  fetchingAppointments: false,
+  appointments: [],
 });
 
 export default function app(state = initialState, action = {}) {
@@ -17,9 +19,13 @@ export default function app(state = initialState, action = {}) {
     case 'SUB_COUNTER':
       return state.set('counter', state.get('counter') - payload.amount);
     case 'FETCHING_PATIENTS':
-      return state.set('isDataLoading', true);
+      return state.set('isDataLoading', true).set('patientSelected', null);
     case 'PATIENTS_LOADED':
-      return state.set('isDataLoading', false).set('patientList', payload.data);
+      return state.set('isDataLoading', false).set('patientList', payload.data).set('patientSelected', null);
+    case 'PATIENT_SELECTED':
+      return state.set('patientSelected', payload.id).set('fetchingAppointments', true);
+    case 'APPOINTMENTS_FETCHED':
+      return state.set('appointments', payload.data).set('fetchingAppointments', false);
     default:
       return state;
   }

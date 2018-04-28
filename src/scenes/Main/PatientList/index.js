@@ -24,6 +24,10 @@ class PatientList extends Component {
     })
   }
 
+  patientSelected (id) {
+    this.props.actions.PATIENT_SELECTED(id);
+  }
+
   render() {
     const { app } = this.props;
     const isDataLoading = app.get('isDataLoading');
@@ -40,7 +44,7 @@ class PatientList extends Component {
         return (
             <div>
               {patientList.map((patient) => 
-              <div className="box Box-links" key={patient.id}>
+              <div onClick={() => this.patientSelected(patient.id)} className="box Box-links" key={patient.id}>
                 <div className="Bold-weight Patient-name">{patient.name}</div>
                 <div>{patient.company}</div>
               </div>)}

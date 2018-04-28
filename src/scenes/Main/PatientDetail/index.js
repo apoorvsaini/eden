@@ -13,17 +13,27 @@ class PatientDetail extends Component {
     actions: mapActionsToPropTypes(AppActions).isRequired,
   }
 
-  componentDidMount() {
-    
+  componentDidUpdate() {
+    const { actions } = this.props;
+    const patientId = this.props.app.get('patientSelected');
+    const fetchingAppointments = this.props.app.get('fetchingAppointments');
+
+    if(patientId !== null && fetchingAppointments) {
+        let appointments = api.get('appointments?patient_id='+patientId);
+        appointments.then(function(data){
+            actions.APPOINTMENTS_FETCHED(data);
+        })
+    }
   }
 
   render() {
     const { app } = this.props;
     const patientSelected = app.get('patientSelected');
+    const appointments = app.get('appointments');
 
     if (patientSelected === null) {
         return (
-            <div className="Detail-box box">
+            <div className="Empty-box box">
                PICK A PATIENT
             </div>
         );
@@ -31,7 +41,10 @@ class PatientDetail extends Component {
     else {
         return (
             <div className="Detail-box box">
-               
+               {appointments.map((appointment) => 
+                <div className="box" key={appointment.id}>
+                    <div className="Bold-weight Patient-name">{appointment.note}</div>
+              </div>)}
             </div>
         );
     }

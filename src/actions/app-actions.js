@@ -19,9 +19,21 @@ export const PATIENTS_LOADED = (data) => ({
   data: data
 });
 
+export const PATIENT_SELECTED = (id) => ({
+  type: 'PATIENT_SELECTED',
+  id: id
+}); 
+
+export const APPOINTMENTS_FETCHED = (data) => ({
+  type: 'APPOINTMENTS_FETCHED',
+  data: data
+});
+
 export const AppActions = {
   ADD_COUNTER,
   SUB_COUNTER,
   FETCHING_PATIENTS,
-  PATIENTS_LOADED
+  PATIENTS_LOADED,
+  PATIENT_SELECTED,
+  APPOINTMENTS_FETCHED
 };
