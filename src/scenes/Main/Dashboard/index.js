@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TiBook from 'react-icons/lib/ti/book';
 import IoLogout from 'react-icons/lib/io/log-out';
+import ReactTooltip from 'react-tooltip'
 
 import PatientList from '../PatientList';
 import PatientDetail from '../PatientDetail';
@@ -28,16 +29,16 @@ class Dashboard extends Component {
     return (
       <div className="Dash-area columns">
         <div className="Side-nav column">
-          <TiBook className="Side-icons"  size={30} color="white"/>
-          <IoLogout className="Side-icons" size={30} color="white" onClick={this.logout}/> 
+          <TiBook className="Side-icons" data-tip="Overview"  size={30} color="white"/>
+          <IoLogout className="Side-icons" data-tip="Log out" size={30} color="white" onClick={this.logout}/> 
         </div>
         <div className="Sidebar-one column is-one-third">
-         
           <PatientList/>
         </div>
         <div className="Sidebar-two column">
           <PatientDetail/>
         </div>
+        <ReactTooltip place="right" type="dark" effect="solid"/>
       </div>
     );
   }
