@@ -24,7 +24,11 @@ class Dashboard extends Component {
     const { app, user } = this.props;
     return (
       <div className="Dash-area columns">
+        <div className="Header column">
+            <a className="Logout-btn" href="#" onClick={this.logout}>Logout</a>
+        </div>
         <div className="Sidebar-one column is-one-third">
+         
           <PatientList/>
         </div>
         <div className="Sidebar-two column">

@@ -26,10 +26,20 @@ body > div > div > div {
 }
 
 .Header {
-  position: fixed;
+  position: relative;
   top: 0px;
   left: 0px;
-  height: 50px;
-  width: 100%;
+  height: 100%;
+  max-width: 100px;
+  background: rebeccapurple;
+}
+
+@media only screen and (max-width: 756px) {
+  .Header {
+    position: fixed;
+    width: 100%;
+    max-width: 100%;
+    height: 60px;
+  }
 }
 

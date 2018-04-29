@@ -26,9 +26,6 @@ class Main extends Component {
     return (
       <div className="Main">
         <div className="Main-content">
-          <div className="Header">
-              <a className="Logout-btn" href="#" onClick={this.logout}>Logout</a>
-          </div>
           <Switch>
             <Route path="/app" component={Dashboard} />
             <Route component={Empty} />
