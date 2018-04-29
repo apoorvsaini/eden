@@ -18,6 +18,12 @@ class PatientList extends Component {
 
     let patients = api.get('patients');
     patients.then(function(data){
+        // Create user id-name cache
+        var userData = {};
+        for (var k in data) {
+          userData[data[k].id] = data[k].name;
+        }
+        actions.SETUP_USER_CACHE(userData);
         actions.PATIENTS_LOADED(data);
     })
   }

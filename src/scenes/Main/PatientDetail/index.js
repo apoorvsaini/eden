@@ -33,15 +33,15 @@ class PatientDetail extends Component {
                 data[k].datetime = timeStamp;
                 data[k].created_at = ctreatedAt;
             }
-
-            // Sort data by datetime 
-            //data.sort(function(a,b) {return (a.datetime < b.datetime) ? 1 : ((b.datetime < a.datetime) ? -1 : 0);} );
-            let messages = api.get('user_actions?patient_id='+patientId+'&action=message');
-            messages.then(function(msg){
-                actions.SET_MESSAGE_COUNT(msg.length);
-                actions.APPOINTMENTS_FETCHED(data);
-            })
             
+            actions.APPOINTMENTS_FETCHED(data);
+            
+        })
+
+        // Get number of messages
+        let messages = api.get('user_actions?patient_id='+patientId+'&action=message');
+        messages.then(function(msg){
+            actions.SET_MESSAGE_COUNT(msg.length);
         })
     }
   }
@@ -77,7 +77,7 @@ class PatientDetail extends Component {
                     </span>
                 </h1>
                 {appointments.map((appointment) => 
-                <div className="box" key={appointment.id}>
+                <div className="box" key={appointment.id}  style={{borderTop: appointment.note == "Cancelled" ? '5px #ff3860 solid' : '' }}>
                     <div className="Bold-weight Patient-name">{appointment.note}</div>
                     <div><TiCalendar /> { moment(appointment.datetime).format('MM-DD-YYYY LTS')}</div>
                     <div>Created At: {moment(appointment.created_at).format('MM-DD-YYYY LTS')}</div>

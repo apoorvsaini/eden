@@ -11,18 +11,19 @@ const initialState = Map({
   appointments: [],
   messageCount: 0,
   currentScene: 'patients',
+  userNameCache: {},
+  appointmentPage: 1,
+  allAppointments: [],
 });
 
 export default function app(state = initialState, action = {}) {
   const { type, ...payload } = action;
 
   switch (type) {
-    case 'ADD_COUNTER':
-      return state.set('counter', state.get('counter') + payload.amount);
-    case 'SUB_COUNTER':
-      return state.set('counter', state.get('counter') - payload.amount);
     case 'FETCHING_PATIENTS':
       return state.set('isDataLoading', true).set('patientSelected', null).set('patientNameSelected', null);
+    case 'SETUP_USER_CACHE':
+      return state.set('userNameCache', payload.data);
     case 'PATIENTS_LOADED':
       return state.set('isDataLoading', false).set('patientList', payload.data).set('patientSelected', null).set('patientNameSelected', null).set('messageCount', 0);
     case 'PATIENT_SELECTED':
@@ -31,6 +32,8 @@ export default function app(state = initialState, action = {}) {
       return state.set('messageCount', payload.count);
     case 'APPOINTMENTS_FETCHED':
       return state.set('appointments', payload.data).set('fetchingAppointments', false); 
+    case 'SET_ALL_APPOINTMENTS':
+      return state.set('allAppointments', payload.data); 
     case 'CHANGE_SCENE':
       if (payload.scene === 'patients')
         return state.set('currentScene', payload.scene).set('appointments', []).set('patientNameSelected', null).set('patientList', []).set('isDataLoading', true).set('messageCount', 0);

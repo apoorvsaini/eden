@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
+
+import TiUser from 'react-icons/lib/ti/user';
+import IoQuote from 'react-icons/lib/io/quote';
 
 import { mapActionsToPropTypes } from '../../../lib/util';
 import api from '../../../lib/api';
@@ -13,48 +17,49 @@ class Overview extends Component {
     actions: mapActionsToPropTypes(AppActions).isRequired,
   }
 
-  fetchPatients () {
-    const { actions } = this.props;
+  fetchUserName (id) {
+    
+  }
 
-    let patients = api.get('patients');
-    patients.then(function(data){
-        actions.PATIENTS_LOADED(data);
+  fetchAppointment () {
+    const { actions, app} = this.props;
+    const page = app.get('appointmentPage');
+    const patientId = app.get('patientSelected');
+
+    let appointments = api.get('appointments?_sort=datetime&_order=desc');
+    appointments.then(function(data){
+        //group by date
+        actions.SET_ALL_APPOINTMENTS(data);
     })
   }
 
-  componentDidMount() {
-    // Making API call to fetch patients list
-    const { actions } = this.props;
-    actions.FETCHING_PATIENTS();
-    this.fetchPatients();
+  componentDidMount () {
+    this.fetchAppointment();
   }
 
-  componentDidUpdate() {
-    const { actions, app } = this.props;
-    const isDataLoading = app.get('isDataLoading');
-    const patientList = app.get('patientList');
-    const currentScene = app.get('currentScene');
-
-    if(patientList.length == 0 && currentScene === 'patients' && isDataLoading === true) {
-        this.fetchPatients();
-    }
-  }
-
-  patientSelected (id, name) {
-    this.props.actions.PATIENT_SELECTED(id, name);
+  componentDidUpdate () {
   }
 
   render() {
     const { app } = this.props;
     const isDataLoading = app.get('isDataLoading');
-    const patientList = app.get('patientList');
-    const patientSelected = app.get('patientSelected');
+    const appointments = app.get('allAppointments');
+    const userNameCache = app.get('userNameCache');
 
     return (
-        <div className="Bold-weight">
-            LOADING...
+        <div className="Overview-bg column">
+            <div className="tile is-ancestor">
+                <div className="tile is-parent is-vertical">
+                {appointments.map((appointment) => 
+                <div className="tile is-child notification Main-tile" style={{borderTop: appointment.note == "Cancelled" ? '5px #ff3860 solid' : '', background:'#ffe57c' }} key={appointment.id}>
+                    <div className="Bold-weight Patient-name">{ moment(appointment.datetime).format('MM-DD-YYYY')}</div>
+                    <div><IoQuote size={40}/> {appointment.note}</div>
+                    <div><TiUser size={20}/> {userNameCache[appointment.patient_id]}</div>
+                </div>)}
+                </div>
+            </div>
         </div>
-        );
+    );
   }
 }
 

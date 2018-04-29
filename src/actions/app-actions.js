@@ -40,6 +40,16 @@ export const CHANGE_SCENE = (scene) => ({
   scene: scene
 });
 
+export const SET_ALL_APPOINTMENTS = (data) => ({
+  type: 'SET_ALL_APPOINTMENTS',
+  data: data
+});
+
+export const SETUP_USER_CACHE = (data) => ({
+  type: 'SETUP_USER_CACHE',
+  data: data
+});
+
 export const AppActions = {
   ADD_COUNTER,
   SUB_COUNTER,
@@ -48,5 +58,7 @@ export const AppActions = {
   PATIENT_SELECTED,
   APPOINTMENTS_FETCHED,
   CHANGE_SCENE,
-  SET_MESSAGE_COUNT
+  SET_MESSAGE_COUNT,
+  SET_ALL_APPOINTMENTS,
+  SETUP_USER_CACHE
 };
