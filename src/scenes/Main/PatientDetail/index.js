@@ -24,7 +24,8 @@ class PatientDetail extends Component {
     const fetchingAppointments = this.props.app.get('fetchingAppointments');
 
     if(patientId !== null && fetchingAppointments) {
-        let appointments = api.get('appointments?patient_id='+patientId);
+        let appointments = api.get('appointments?patient_id='+patientId+"&_sort=datetime&_order=desc");
+        
         appointments.then(function(data){
             for (var k in data) {
                 var timeStamp = moment(data[k].datetime).valueOf();
@@ -34,7 +35,7 @@ class PatientDetail extends Component {
             }
 
             // Sort data by datetime 
-            data.sort(function(a,b) {return (a.datetime < b.datetime) ? 1 : ((b.datetime < a.datetime) ? -1 : 0);} ); 
+            //data.sort(function(a,b) {return (a.datetime < b.datetime) ? 1 : ((b.datetime < a.datetime) ? -1 : 0);} );
 
             actions.APPOINTMENTS_FETCHED(data);
         })
@@ -74,8 +75,8 @@ class PatientDetail extends Component {
                 {appointments.map((appointment) => 
                 <div className="box" key={appointment.id}>
                     <div className="Bold-weight Patient-name">{appointment.note}</div>
-                    <div><TiCalendar /> Last Updated: { moment(appointment.datetime).format('MM-DD-YYYY LTS')}</div>
-                    <div><TiCalendar /> Created At: {moment(appointment.created_at).format('MM-DD-YYYY LTS')}</div>
+                    <div><TiCalendar /> { moment(appointment.datetime).format('MM-DD-YYYY LTS')}</div>
+                    <div>Created At: {moment(appointment.created_at).format('MM-DD-YYYY LTS')}</div>
               </div>)}
             </div>
         );
