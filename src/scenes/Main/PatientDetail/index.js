@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import { mapActionsToPropTypes } from '../../../lib/util';
 import api from '../../../lib/api';
@@ -21,6 +22,16 @@ class PatientDetail extends Component {
     if(patientId !== null && fetchingAppointments) {
         let appointments = api.get('appointments?patient_id='+patientId);
         appointments.then(function(data){
+            for (var k in data) {
+                var timeStamp = moment(data[k].datetime).valueOf();
+                var ctreatedAt = moment(data[k].created_at).valueOf();
+                data[k].datetime = timeStamp;
+                data[k].created_at = ctreatedAt;
+            }
+
+            // Sort data by datetime 
+            data.sort(function(a,b) {return (a.datetime < b.datetime) ? 1 : ((b.datetime < a.datetime) ? -1 : 0);} ); 
+
             actions.APPOINTMENTS_FETCHED(data);
         })
     }
@@ -29,6 +40,7 @@ class PatientDetail extends Component {
   render() {
     const { app } = this.props;
     const patientSelected = app.get('patientSelected');
+    const patientNameSelected = app.get('patientNameSelected');
     const appointments = app.get('appointments');
     const fetchingAppointments = app.get('fetchingAppointments');
 
@@ -49,9 +61,12 @@ class PatientDetail extends Component {
     else {
         return (
             <div className="Detail-box box">
+                <h1 className="title">{patientNameSelected}</h1>
                {appointments.map((appointment) => 
                 <div className="box" key={appointment.id}>
                     <div className="Bold-weight Patient-name">{appointment.note}</div>
+                    <div>Last Updated: { moment(appointment.datetime).format('MM-DD-YYYY LTS')}</div>
+                    <div>Created At: {moment(appointment.created_at).format('MM-DD-YYYY LTS')}</div>
               </div>)}
             </div>
         );

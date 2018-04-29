@@ -24,8 +24,8 @@ class PatientList extends Component {
     })
   }
 
-  patientSelected (id) {
-    this.props.actions.PATIENT_SELECTED(id);
+  patientSelected (id, name) {
+    this.props.actions.PATIENT_SELECTED(id, name);
   }
 
   render() {
@@ -45,7 +45,7 @@ class PatientList extends Component {
         return (
             <div>
               {patientList.map((patient) => 
-              <div onClick={() => this.patientSelected(patient.id)} className="box Box-links" key={patient.id} style={{borderLeft: patientSelected === patient.id ?'10px solid #5a5a5a' : '0px'}}>
+              <div onClick={() => this.patientSelected(patient.id, patient.name)} className="box Box-links" key={patient.id} style={{borderLeft: patientSelected === patient.id ?'10px solid #5a5a5a' : '0px'}}>
                 <div className="Bold-weight Patient-name">{patient.name}</div>
                 <div>{patient.company}</div>
               </div>)}

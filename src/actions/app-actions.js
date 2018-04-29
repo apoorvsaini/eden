@@ -19,9 +19,10 @@ export const PATIENTS_LOADED = (data) => ({
   data: data
 });
 
-export const PATIENT_SELECTED = (id) => ({
+export const PATIENT_SELECTED = (id, name) => ({
   type: 'PATIENT_SELECTED',
-  id: id
+  id: id,
+  name: name
 }); 
 
 export const APPOINTMENTS_FETCHED = (data) => ({
