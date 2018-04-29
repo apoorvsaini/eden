@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import TiCalendar from 'react-icons/lib/ti/calendar';
@@ -77,7 +76,7 @@ class PatientDetail extends Component {
                     </span>
                 </h1>
                 {appointments.map((appointment) => 
-                <div className="box" key={appointment.id}  style={{borderTop: appointment.note == "Cancelled" ? '5px #ff3860 solid' : '' }}>
+                <div className="box" key={appointment.id}  style={{borderTop: appointment.note === "Cancelled" ? '5px #ff3860 solid' : '' }}>
                     <div className="Bold-weight Patient-name">{appointment.note}</div>
                     <div><TiCalendar /> { moment(appointment.datetime).format('MM-DD-YYYY LTS')}</div>
                     <div>Created At: {moment(appointment.created_at).format('MM-DD-YYYY LTS')}</div>

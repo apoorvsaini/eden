@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip'
 
 import TiBook from 'react-icons/lib/ti/book';
@@ -27,7 +26,7 @@ class Dashboard extends Component {
   PatientDetailView = <div className="Sidebar-two column"><PatientDetail/></div>;
 
   logout = () => {
-    const { actions, userActions } = this.props;
+    const { userActions } = this.props;
     userActions.LOGOUT();
   }
 
@@ -44,7 +43,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { app, user, router } = this.props;
+    const { app } = this.props;
     const currentScene = app.get('currentScene');
     
     return (

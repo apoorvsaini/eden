@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import TiUser from 'react-icons/lib/ti/user';
@@ -22,13 +21,10 @@ class Overview extends Component {
   }
 
   fetchAppointment () {
-    const { actions, app} = this.props;
-    const page = app.get('appointmentPage');
-    const patientId = app.get('patientSelected');
+    const { actions } = this.props;
 
     let appointments = api.get('appointments?_sort=datetime&_order=desc');
     appointments.then(function(data){
-        //group by date
         actions.SET_ALL_APPOINTMENTS(data);
     })
   }
@@ -42,7 +38,6 @@ class Overview extends Component {
 
   render() {
     const { app } = this.props;
-    const isDataLoading = app.get('isDataLoading');
     const appointments = app.get('allAppointments');
     const userNameCache = app.get('userNameCache');
 
@@ -51,7 +46,7 @@ class Overview extends Component {
             <div className="tile is-ancestor">
                 <div className="tile is-parent is-vertical">
                 {appointments.map((appointment) => 
-                <div className="tile is-child notification Main-tile" style={{borderTop: appointment.note == "Cancelled" ? '5px #ff3860 solid' : '' }} key={appointment.id}>
+                <div className="tile is-child notification Main-tile" style={{borderTop: appointment.note === "Cancelled" ? '5px #ff3860 solid' : '' }} key={appointment.id}>
                     <div className="Bold-weight Patient-name">{ moment(appointment.datetime).format('MM-DD-YYYY')}</div>
                     <div><TiUser size={20}/> {userNameCache[appointment.patient_id]}</div>
                     <div><IoQuote size={40}/> {appointment.note}</div>

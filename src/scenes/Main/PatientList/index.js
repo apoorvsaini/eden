@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
 import { mapActionsToPropTypes } from '../../../lib/util';
 import api from '../../../lib/api';
@@ -36,12 +35,12 @@ class PatientList extends Component {
   }
 
   componentDidUpdate() {
-    const { actions, app } = this.props;
+    const { app } = this.props;
     const isDataLoading = app.get('isDataLoading');
     const patientList = app.get('patientList');
     const currentScene = app.get('currentScene');
 
-    if(patientList.length == 0 && currentScene === 'patients' && isDataLoading === true) {
+    if(patientList.length === 0 && currentScene === 'patients' && isDataLoading === true) {
         this.fetchPatients();
     }
   }
