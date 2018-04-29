@@ -2,30 +2,34 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import TiBook from 'react-icons/lib/ti/book';
+import IoLogout from 'react-icons/lib/io/log-out';
 
 import PatientList from '../PatientList';
 import PatientDetail from '../PatientDetail';
 
 import { mapActionsToPropTypes } from '../../../lib/util';
-import { AppActions } from '../../../actions';
+import { AppActions, UserActions } from '../../../actions';
 import './styles.css';
 
 class Dashboard extends Component {
   static propTypes = {
     actions: mapActionsToPropTypes(AppActions).isRequired,
+    userActions: mapActionsToPropTypes(UserActions).isRequired,
   }
 
-  goToMessages = () => {
-    const { actions } = this.props;
-    actions.goToMessages();
+  logout = () => {
+    const { actions, userActions } = this.props;
+    userActions.LOGOUT();
   }
 
   render() {
     const { app, user } = this.props;
     return (
       <div className="Dash-area columns">
-        <div className="Header column">
-            <a className="Logout-btn" href="#" onClick={this.logout}>Logout</a>
+        <div className="Side-nav column">
+          <TiBook className="Side-icons"  size={30} color="white"/>
+          <IoLogout className="Side-icons" size={30} color="white" onClick={this.logout}/> 
         </div>
         <div className="Sidebar-one column is-one-third">
          
@@ -43,5 +47,6 @@ export default connect(
   state => ({ app: state.get('app'), user: state.get('user') }),
   dispatch => ({
     actions: bindActionCreators(AppActions, dispatch),
+    userActions: bindActionCreators(UserActions, dispatch),
   }),
 )(Dashboard);

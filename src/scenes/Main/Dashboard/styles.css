@@ -20,3 +20,38 @@
 .Bold-weight {
     font-weight: 600;
 }
+
+.Logout-btn {
+    float: right;
+    margin-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    color: #FFF;
+  }
+  
+  .Side-icons {
+      margin-top: 20px;
+      cursor: pointer;
+  }
+
+  .Side-nav {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    max-width: 70px;
+    background: #46675a;
+    text-align: center;
+  }
+  
+  @media only screen and (max-width: 756px) {
+    .Side-nav {
+      position: fixed;
+      width: 100%;
+      max-width: 100%;
+      height: 60px;
+    }
+  }
+  
+  

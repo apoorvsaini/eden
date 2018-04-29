@@ -17,11 +17,6 @@ class Main extends Component {
     actions: mapActionsToPropTypes(UserActions).isRequired,
   }
 
-  logout = () => {
-    const { actions } = this.props;
-    actions.LOGOUT();
-  }
-
   render() {
     return (
       <div className="Main">

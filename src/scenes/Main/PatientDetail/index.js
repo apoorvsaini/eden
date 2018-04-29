@@ -69,7 +69,7 @@ class PatientDetail extends Component {
                 <div className="box" key={appointment.id}>
                     <div className="Bold-weight Patient-name">{appointment.note}</div>
                     <div><TiCalendar /> Last Updated: { moment(appointment.datetime).format('MM-DD-YYYY LTS')}</div>
-                    <div><TiCalendar />Created At: {moment(appointment.created_at).format('MM-DD-YYYY LTS')}</div>
+                    <div><TiCalendar /> Created At: {moment(appointment.created_at).format('MM-DD-YYYY LTS')}</div>
               </div>)}
             </div>
         );
