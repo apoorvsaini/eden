@@ -36,8 +36,12 @@ class PatientDetail extends Component {
 
             // Sort data by datetime 
             //data.sort(function(a,b) {return (a.datetime < b.datetime) ? 1 : ((b.datetime < a.datetime) ? -1 : 0);} );
-
-            actions.APPOINTMENTS_FETCHED(data);
+            let messages = api.get('user_actions?patient_id='+patientId+'&action=message');
+            messages.then(function(msg){
+                actions.SET_MESSAGE_COUNT(msg.length);
+                actions.APPOINTMENTS_FETCHED(data);
+            })
+            
         })
     }
   }

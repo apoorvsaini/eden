@@ -25,6 +25,11 @@ export const PATIENT_SELECTED = (id, name) => ({
   name: name
 }); 
 
+export const SET_MESSAGE_COUNT = (count) => ({
+  type: 'SET_MESSAGE_COUNT',
+  count: count
+})
+
 export const APPOINTMENTS_FETCHED = (data) => ({
   type: 'APPOINTMENTS_FETCHED',
   data: data
@@ -42,5 +47,6 @@ export const AppActions = {
   PATIENTS_LOADED,
   PATIENT_SELECTED,
   APPOINTMENTS_FETCHED,
-  CHANGE_SCENE
+  CHANGE_SCENE,
+  SET_MESSAGE_COUNT
 };

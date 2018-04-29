@@ -27,6 +27,8 @@ export default function app(state = initialState, action = {}) {
       return state.set('isDataLoading', false).set('patientList', payload.data).set('patientSelected', null).set('patientNameSelected', null).set('messageCount', 0);
     case 'PATIENT_SELECTED':
       return state.set('patientSelected', payload.id).set('patientNameSelected', payload.name).set('fetchingAppointments', true);
+    case 'SET_MESSAGE_COUNT':
+      return state.set('messageCount', payload.count);
     case 'APPOINTMENTS_FETCHED':
       return state.set('appointments', payload.data).set('fetchingAppointments', false); 
     case 'CHANGE_SCENE':
