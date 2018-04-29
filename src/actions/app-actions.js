@@ -30,11 +30,17 @@ export const APPOINTMENTS_FETCHED = (data) => ({
   data: data
 });
 
+export const CHANGE_SCENE = (scene) => ({
+  type: 'CHANGE_SCENE',
+  scene: scene
+});
+
 export const AppActions = {
   ADD_COUNTER,
   SUB_COUNTER,
   FETCHING_PATIENTS,
   PATIENTS_LOADED,
   PATIENT_SELECTED,
-  APPOINTMENTS_FETCHED
+  APPOINTMENTS_FETCHED,
+  CHANGE_SCENE
 };

@@ -9,6 +9,7 @@ const initialState = Map({
   patientNameSelected: null,
   fetchingAppointments: false,
   appointments: [],
+  currentScene: 'patients',
 });
 
 export default function app(state = initialState, action = {}) {
@@ -26,7 +27,12 @@ export default function app(state = initialState, action = {}) {
     case 'PATIENT_SELECTED':
       return state.set('patientSelected', payload.id).set('patientNameSelected', payload.name).set('fetchingAppointments', true);
     case 'APPOINTMENTS_FETCHED':
-      return state.set('appointments', payload.data).set('fetchingAppointments', false);
+      return state.set('appointments', payload.data).set('fetchingAppointments', false); 
+    case 'CHANGE_SCENE':
+      if (payload.scene === 'patients')
+        return state.set('currentScene', payload.scene).set('appointments', []).set('patientNameSelected', null).set('patientList', []).set('isDataLoading', true);
+      else
+        return state.set('currentScene', payload.scene).set('appointments', []).set('patientNameSelected', null).set('patientList', []).set('isDataLoading', false);
     default:
       return state;
   }

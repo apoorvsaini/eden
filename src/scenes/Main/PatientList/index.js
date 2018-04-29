@@ -13,15 +13,31 @@ class PatientList extends Component {
     actions: mapActionsToPropTypes(AppActions).isRequired,
   }
 
-  componentDidMount() {
-    // Making API call to fetch patients list
+  fetchPatients () {
     const { actions } = this.props;
-    actions.FETCHING_PATIENTS();
 
     let patients = api.get('patients');
     patients.then(function(data){
         actions.PATIENTS_LOADED(data);
     })
+  }
+
+  componentDidMount() {
+    // Making API call to fetch patients list
+    const { actions } = this.props;
+    actions.FETCHING_PATIENTS();
+    this.fetchPatients();
+  }
+
+  componentDidUpdate() {
+    const { actions, app } = this.props;
+    const isDataLoading = app.get('isDataLoading');
+    const patientList = app.get('patientList');
+    const currentScene = app.get('currentScene');
+
+    if(patientList.length == 0 && currentScene === 'patients' && isDataLoading === true) {
+        this.fetchPatients();
+    }
   }
 
   patientSelected (id, name) {
@@ -45,7 +61,7 @@ class PatientList extends Component {
         return (
             <div>
               {patientList.map((patient) => 
-              <div onClick={() => this.patientSelected(patient.id, patient.name)} className="box Box-links" key={patient.id} style={{borderLeft: patientSelected === patient.id ?'10px solid #5a5a5a' : '0px'}}>
+              <div onClick={() => this.patientSelected(patient.id, patient.name)} className="box Box-links" key={patient.id} style={{borderLeft: patientSelected === patient.id ? "10px solid #5a5a5a" : "0px"}}>
                 <div className="Bold-weight Patient-name">{patient.name}</div>
                 <div>{patient.company}</div>
               </div>)}
