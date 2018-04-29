@@ -11,6 +11,7 @@ import IoCalendar from 'react-icons/lib/io/android-calendar';
 
 import PatientList from '../PatientList';
 import PatientDetail from '../PatientDetail';
+import Overview from '../Overview';
 
 import { mapActionsToPropTypes, combineArrayOfMaps } from '../../../lib/util';
 import { AppActions, UserActions } from '../../../actions';
@@ -21,6 +22,9 @@ class Dashboard extends Component {
     actions: mapActionsToPropTypes(AppActions).isRequired,
     userActions: mapActionsToPropTypes(UserActions).isRequired,
   }
+
+  PatientListView = <div className="Sidebar-one column is-one-third"><PatientList/></div>
+  PatientDetailView = <div className="Sidebar-two column"><PatientDetail/></div>;
 
   logout = () => {
     const { actions, userActions } = this.props;
@@ -50,12 +54,7 @@ class Dashboard extends Component {
           <IoCalendar onClick={() => this.gotoCalendar()} className="Side-icons" data-tip="All Appointments"  size={30} color={currentScene === "appointments" ? "yellow" : "white"}/>
           <IoLogout className="Side-icons" data-tip="Log out" size={30} color="white" onClick={this.logout}/> 
         </div>
-        <div className="Sidebar-one column is-one-third">
-          <PatientList/>
-        </div>
-        <div className="Sidebar-two column">
-          <PatientDetail/>
-        </div>
+        {currentScene === "patients" ? [this.PatientListView, this.PatientDetailView] : <Overview/>}
         <ReactTooltip place="right" type="dark" effect="solid"/>
       </div>
     );

@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import TiCalendar from 'react-icons/lib/ti/calendar';
-import IoLeft from 'react-icons/lib/io/arrow-left-b';
+import IoLeft from 'react-icons/lib/io/arrow-left-b'; 
+import IoChat from 'react-icons/lib/io/chatboxes';
 
 import { mapActionsToPropTypes } from '../../../lib/util';
 import api from '../../../lib/api';
@@ -46,6 +47,7 @@ class PatientDetail extends Component {
     const patientNameSelected = app.get('patientNameSelected');
     const appointments = app.get('appointments');
     const fetchingAppointments = app.get('fetchingAppointments');
+    const messageCount = app.get('messageCount');
 
     if (patientSelected === null && !fetchingAppointments) {
         return (
@@ -64,8 +66,12 @@ class PatientDetail extends Component {
     else {
         return (
             <div className="Detail-box box">
-                <h1 className="title">{patientNameSelected}</h1>
-               {appointments.map((appointment) => 
+                <h1 className="title">{patientNameSelected} 
+                    <span className="Message-count">
+                        <IoChat /> {messageCount} messages
+                    </span>
+                </h1>
+                {appointments.map((appointment) => 
                 <div className="box" key={appointment.id}>
                     <div className="Bold-weight Patient-name">{appointment.note}</div>
                     <div><TiCalendar /> Last Updated: { moment(appointment.datetime).format('MM-DD-YYYY LTS')}</div>

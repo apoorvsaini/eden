@@ -8,7 +8,7 @@ import api from '../../../lib/api';
 import { AppActions } from '../../../actions';
 import './styles.css';
 
-class PatientList extends Component {
+class Overview extends Component {
   static propTypes = {
     actions: mapActionsToPropTypes(AppActions).isRequired,
   }
@@ -50,25 +50,11 @@ class PatientList extends Component {
     const patientList = app.get('patientList');
     const patientSelected = app.get('patientSelected');
 
-    if (isDataLoading) {
-        return (
-            <div className="Bold-weight">
-              LOADING...
-            </div>
-          );
-    }
-    else {
-        return (
-            <div>
-              {patientList.map((patient) => 
-              <div onClick={() => this.patientSelected(patient.id, patient.name)} className="box Box-links" key={patient.id} style={{borderLeft: patientSelected === patient.id ? "10px solid #5a5a5a" : "0px", background: patientSelected === patient.id ? "yellow" : "#FFF"}}>
-                <div className="Bold-weight Patient-name">{patient.name}</div>
-                <div>{patient.company}</div>
-              </div>)}
-            </div>
-          );
-    }
-    
+    return (
+        <div className="Bold-weight">
+            LOADING...
+        </div>
+        );
   }
 }
 
@@ -77,4 +63,4 @@ export default connect(
   dispatch => ({
     actions: bindActionCreators(AppActions, dispatch),
   }),
-)(PatientList);
+)(Overview);
