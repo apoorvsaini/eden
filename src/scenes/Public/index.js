@@ -59,13 +59,11 @@ class Public extends Component {
         <div className="Public">
           <h1 className="Public-header">
             <img src={logo} className="Public-header-logo" alt="logo" />
-            Eden Health Code Challenge
+             Code Challenge
           </h1>
 
           <Route exact path="/" component={Login} />
           <Route exact path="/about" component={About} />
-
-          {this.renderNavBar()}
         </div>
       </div>
     );

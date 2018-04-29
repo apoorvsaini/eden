@@ -1,0 +1,18 @@
+.Login {
+    text-align: center;
+}
+
+.Form-element {
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.Form-btn {
+    position: relative;
+    top: 20px;
+    margin: 0 auto;
+}
+
+input {
+    border: none !important;
+}

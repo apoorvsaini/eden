@@ -51,10 +51,10 @@ class Overview extends Component {
             <div className="tile is-ancestor">
                 <div className="tile is-parent is-vertical">
                 {appointments.map((appointment) => 
-                <div className="tile is-child notification Main-tile" style={{borderTop: appointment.note == "Cancelled" ? '5px #ff3860 solid' : '', background:'#ffe57c' }} key={appointment.id}>
+                <div className="tile is-child notification Main-tile" style={{borderTop: appointment.note == "Cancelled" ? '5px #ff3860 solid' : '' }} key={appointment.id}>
                     <div className="Bold-weight Patient-name">{ moment(appointment.datetime).format('MM-DD-YYYY')}</div>
-                    <div><IoQuote size={40}/> {appointment.note}</div>
                     <div><TiUser size={20}/> {userNameCache[appointment.patient_id]}</div>
+                    <div><IoQuote size={40}/> {appointment.note}</div>
                 </div>)}
                 </div>
             </div>

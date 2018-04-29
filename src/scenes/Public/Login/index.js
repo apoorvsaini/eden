@@ -5,6 +5,7 @@ import { push } from 'react-router-redux';
 
 import { mapActionsToPropTypes, combineArrayOfMaps } from '../../../lib/util';
 import { UserActions } from '../../../actions';
+import './styles.css';
 
 class Login extends Component {
   static propTypes = {
@@ -24,16 +25,16 @@ class Login extends Component {
       <div className="Login" >
         <form>
           <input
-            className="Form-element input"
+            className="Form-element input is-medium"
             placeholder="Email address"
           />
           <input
-            className="Form-element input"
+            className="Form-element input is-medium"
             placeholder="Password"
             type="password"
           />
           <button
-            className="Form-element Form-btn button is-danger is-rounded"
+            className="Form-element button Form-btn is-primary is-medium"
             type="button"
             onClick={this.login}
           >

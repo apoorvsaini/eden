@@ -52,7 +52,7 @@ class Dashboard extends Component {
         <div className="Side-nav column">
           <TiBook onClick={() => this.gotoOverview()} className="Side-icons" data-tip="All Patients"  size={30} color={currentScene === "patients" ? "yellow" : "white"} />
           <IoCalendar onClick={() => this.gotoCalendar()} className="Side-icons" data-tip="All Appointments"  size={30} color={currentScene === "appointments" ? "yellow" : "white"}/>
-          <IoLogout className="Side-icons" data-tip="Log out" size={30} color="white" onClick={this.logout}/> 
+          <IoLogout className="Side-icons" data-tip="Log Out" size={30} color="white" onClick={this.logout}/> 
         </div>
         {currentScene === "patients" ? [this.PatientListView, this.PatientDetailView] : <Overview/>}
         <ReactTooltip place="right" type="dark" effect="solid"/>
